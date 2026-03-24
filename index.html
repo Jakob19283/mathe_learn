@@ -120,13 +120,13 @@
   </style>
 </head>
 <body>
-
   <div class="sidebar">
     <h2>📘 Themen</h2>
     <button class="topic-btn" onclick="loadTopic('algebra')">Algebra</button>
     <button class="topic-btn" onclick="loadTopic('geometry')">Geometrie</button>
     <button class="topic-btn" onclick="loadTopic('analysis')">Analysis</button>
     <button class="topic-btn" onclick="loadTopic('probability')">Wahrscheinlichkeit</button>
+    <button class="topic-btn" onclick="loadTopic('home')">Home</button>
   </div>
 
   <div class="topbar">
@@ -135,8 +135,8 @@
 
   <div class="content">
     <div class="card" id="contentBox">
-      <h1>Willkommen 👋</h1>
-      <p>Wähle links ein Thema aus, um zu starten. Vielen Dank, dass du dich für diese Website entschieden hast</p>
+      <h1>Willkommen </h1>
+      <p>Wähle links ein Thema aus, um zu starten. Vielen Dank, dass du dich für diese Website entschieden hast!</p>
     </div>
   </div>
 
@@ -152,6 +152,10 @@
         geometry: {
           title: 'Geometrie',
           text: 'Geometrie untersucht Formen, Winkel und Räume.'
+        },
+        home: {
+          title: 'Willkommen'
+          text: 'Wähle links ein Thema aus, um zu starten. Vielen Dank, dass du dich für diese Website entschieden hast!'
         },
         analysis: {
           title: 'Analysis',
