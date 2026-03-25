@@ -3,176 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Math Learning</title>
+  <title>Mathe Akademie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-    }
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+    body {background: radial-gradient(circle at 20% 30%, #1f1c2c, #928dab); color:white; display:flex; min-height:100vh; overflow-x:hidden;}
 
     /* Sidebar */
-    .sidebar {
-      width: 260px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .topic-btn {
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    }
-
-    .topic-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-    }
-
-    /* Main Content */
-    .content {
-      flex: 1;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 20px;
-      padding: 30px;
-      width: 80%;
-      max-width: 800px;
-      text-align: center;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-      transition: 0.4s;
-    }
-
-    .card h1 {
-      margin-bottom: 20px;
-    }
-
-    .card p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    /* Fancy Glow Effect */
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 40px rgba(0,150,255,0.6);
-    }
+    .sidebar {width:260px; background: rgba(0,0,0,0.7); backdrop-filter: blur(15px); padding:20px; display:flex; flex-direction:column; gap:15px; border-right:1px solid rgba(255,255,255,0.1);}
+    .sidebar h2 {text-align:center; margin-bottom:10px; color:#00ffff; text-shadow:0 0 5px #00ffff;}
+    .topic-btn {padding:12px; border:none; border-radius:12px; background: linear-gradient(135deg,#ff4e50,#f9d423); cursor:pointer; transition:0.3s; box-shadow:0 4px 15px rgba(0,0,0,0.4); font-weight:500;}
+    .topic-btn:hover {transform: translateY(-3px) scale(1.05); box-shadow:0 8px 30px rgba(0,0,0,0.6);}
 
     /* Top Navigation */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 260px;
-      right: 0;
-      height: 60px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+    .topbar {position:fixed; top:0; left:260px; right:0; height:60px; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); display:flex; align-items:center; padding:0 20px; border-bottom:1px solid rgba(255,255,255,0.1); z-index:10;}
+    .topbar h3 {color:#ffdd00; text-shadow:0 0 5px #ffdd00;}
 
-    .topbar h3 {
-      font-weight: 500;
-    }
+    /* Content */
+    .content {flex:1; padding:100px 40px 40px 40px; display:flex; flex-direction:column; gap:30px;}
+    .card {background: rgba(255,255,255,0.05); border-radius:20px; padding:30px; width:100%; max-width:900px; text-align:left; backdrop-filter: blur(15px); box-shadow:0 10px 40px rgba(0,0,0,0.6); transition:0.4s;}
+    .card:hover {transform: scale(1.02); box-shadow:0 0 50px rgba(255,255,0,0.6);}
+    .card h1 {margin-bottom:15px; color:#00ffff; text-shadow:0 0 5px #00ffff;}
+    .card p {font-size:18px; line-height:1.6;}
+    .tutorial-list {margin-top:15px; display:flex; flex-direction:column; gap:10px;}
+    .tutorial-item {padding:10px; border-left:4px solid #ff4e50; background: rgba(255,255,255,0.05); border-radius:8px; transition:0.3s; cursor:pointer;}
+    .tutorial-item:hover {background: rgba(255,255,255,0.15); border-left-color:#f9d423; transform:scale(1.02);}
 
     /* Responsive */
-    @media(max-width: 800px) {
-      .sidebar {
-        width: 180px;
-      }
-      .topbar {
-        left: 180px;
-      }
-    }
+    @media(max-width:800px){.sidebar{width:180px;}.topbar{left:180px;}.content{padding:80px 20px 20px 20px;}}
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>📘 Themen</h2>
-    <button class="topic-btn" onclick="loadTopic('algebra')">Algebra</button>
-    <button class="topic-btn" onclick="loadTopic('geometry')">Geometrie</button>
-    <button class="topic-btn" onclick="loadTopic('analysis')">Analysis</button>
-    <button class="topic-btn" onclick="loadTopic('probability')">Wahrscheinlichkeit</button>
-    <button class="topic-btn" onclick="loadTopic('home')">Home</button>
+
+<div class="sidebar">
+  <h2>📘 Themen</h2>
+  <button class="topic-btn" onclick="loadTopic('algebra')">Algebra</button>
+  <button class="topic-btn" onclick="loadTopic('geometry')">Geometrie</button>
+  <button class="topic-btn" onclick="loadTopic('analysis')">Analysis</button>
+  <button class="topic-btn" onclick="loadTopic('probability')">Wahrscheinlichkeit</button>
+  <button class="topic-btn" onclick="loadTopic('linear')">Lineare Algebra</button>
+  <button class="topic-btn" onclick="loadTopic('calculus')">Infinitesimalrechnung</button>
+</div>
+
+<div class="topbar"><h3>Mathe Akademie 🚀</h3></div>
+
+<div class="content">
+  <div class="card" id="contentBox">
+    <h1>Willkommen 👋</h1>
+    <p>Wähle ein Thema links aus, um interaktive Tutorials, Aufgaben und Erklärungen zu starten.</p>
   </div>
+</div>
 
-  <div class="topbar">
-    <h3>Mathe Lernplattform</h3>
-  </div>
+<script>
+const topics = {
+  algebra: {
+    title:'Algebra',
+    text:'Algebra behandelt Variablen, Gleichungen, Polynome und Strukturen.',
+    tutorials:['Grundlagen der Variablen','Lineare Gleichungen lösen','Quadratische Gleichungen','Polynome und Faktorisierung']
+  },
+  geometry: {
+    title:'Geometrie',
+    text:'Geometrie untersucht Formen, Winkel, Flächen und Räume.',
+    tutorials:['Punkte, Linien und Winkel','Dreiecke und Vierecke','Kreise und Kreiseigenschaften','Raumgeometrie']
+  },
+  analysis: {
+    title:'Analysis',
+    text:'Analysis beschäftigt sich mit Funktionen, Ableitungen und Integralen.',
+    tutorials:['Funktionen verstehen','Ableitungen berechnen','Integrale lösen','Anwendungsaufgaben']
+  },
+  probability: {
+    title:'Wahrscheinlichkeit',
+    text:'Hier lernst du Zufall, Statistik und Wahrscheinlichkeiten.',
+    tutorials:['Grundlagen der Wahrscheinlichkeit','Bedingte Wahrscheinlichkeiten','Zufallsvariablen','Statistik']
+  },
+  linear: {
+    title:'Lineare Algebra',
+    text:'Lineare Algebra behandelt Matrizen, Vektoren und lineare Gleichungssysteme.',
+    tutorials:['Vektoren und Operationen','Matrizenrechnung','Determinanten','Lineare Gleichungssysteme']
+  },
+  calculus: {
+    title:'Infinitesimalrechnung',
+    text:'Infinitesimalrechnung beschäftigt sich mit Grenzwerten, Ableitungen und Integralen.',
+    tutorials:['Grenzwerte verstehen','Ableitungsregeln','Integrationsmethoden','Anwendungen']
+  }
+};
 
-  <div class="content">
-    <div class="card" id="contentBox">
-      <h1>Willkommen </h1>
-      <p>Wähle links ein Thema aus, um zu starten. Vielen Dank, dass du dich für diese Website entschieden hast!</p>
-    </div>
-  </div>
-
-  <script>
-    function loadTopic(topic) {
-      const box = document.getElementById('contentBox');
-
-      const data = {
-        algebra: {
-          title: 'Algebra',
-          text: 'Algebra beschäftigt sich mit Variablen, Gleichungen und Strukturen.'
-        },
-        geometry: {
-          title: 'Geometrie',
-          text: 'Geometrie untersucht Formen, Winkel und Räume.'
-        },
-        home: {
-          title: 'Home',
-          text: 'Wähle links ein Thema aus, um zu starten. Vielen Dank, dass du dich für diese Website entschieden hast!'
-        },
-        analysis: {
-          title: 'Analysis',
-          text: 'Analysis behandelt Funktionen, Ableitungen und Integrale.'
-        },
-        probability: {
-          title: 'Wahrscheinlichkeit',
-          text: 'Hier lernst du Zufall, Statistik und Wahrscheinlichkeiten.'
-        }
-      };
-
-      box.innerHTML = `
-        <h1>${data[topic].title}</h1>
-        <p>${data[topic].text}</p>
-      `;
-    }
-  </script>
+function loadTopic(topic){
+  const box = document.getElementById('contentBox');
+  const data = topics[topic];
+  let tutorialsHTML = '<div class="tutorial-list">';
+  data.tutorials.forEach(t=>{tutorialsHTML += `<div class="tutorial-item">📌 ${t}</div>`});
+  tutorialsHTML += '</div>';
+  box.innerHTML = `<h1>${data.title}</h1><p>${data.text}</p>${tutorialsHTML}`;
+}
+</script>
 
 </body>
 </html>
